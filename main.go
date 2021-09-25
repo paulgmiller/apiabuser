@@ -1,7 +1,8 @@
-package apiabuser
+package main
 
 import (
 	"context"
+	"log"
 
 	"github.com/thanhpk/randstr"
 	v1 "k8s.io/api/core/v1"
@@ -22,11 +23,11 @@ func main() {
 	if err != nil {
 		panic(err.Error())
 	}
-	nsSpec := &v1.Namespace{ObjectMeta: metav1.ObjectMeta{Name: "garbage"}}
+	/*nsSpec := &v1.Namespace{ObjectMeta: metav1.ObjectMeta{Name: "garbage"}}
 	_, err = clientset.CoreV1().Namespaces().Create(ctx, nsSpec, metav1.CreateOptions{})
 	if err != nil {
 		panic(err.Error())
-	}
+	}*/
 
 	for {
 		//generate infnite random
@@ -38,5 +39,6 @@ func main() {
 		if err != nil {
 			panic(err.Error())
 		}
+		log.Printf("Creted configmap %s", cm.Name)
 	}
 }
